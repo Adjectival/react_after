@@ -8,8 +8,9 @@ class TextToggle extends Component {
     super(props, context);
 
     this.state = {
-      isToggled: 'Hello Portland'
-    }
+      isToggled: this.props.isToggled ? this.props.isToggled : false
+    };
+    this.textSwitch = this.textSwitch.bind(this);
 
   }
 
@@ -17,11 +18,21 @@ class TextToggle extends Component {
   render() {
     return (
       <div className="Test-test">
-        <span>{this.state.isToggled}
-        </span>
+        <a onClick={this.textSwitch}>
+          <span>
+            {this.state.isToggled ? 'Hello World' : 'Hello Portland'}
+          </span>
+        </a>
 
       </div>
     );
   }
+  textSwitch(e) {
+    this.setState({
+      isToggled: !this.state.isToggled
+    });
+    console.log(this.state.isToggled)
+  }
+
 }
 export default TextToggle;
